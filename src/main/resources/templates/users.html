@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Users Management</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.1/css/bootstrap.min.css" type="text/css"/>
+</head>
+
+<body>
+<div class="container-fluid text-center" style="color: darkorchid">
+    <div class="h2">Manage Users</div>
+
+    <div class="m-3">
+        <a class="h4" th:href="@{/users/new}">Add New User</a>
+    </div>
+    <form th:action="@{/users}" method="get">
+        <input class="rounded m-3" type="text" name="keyword">
+        <button class="btn-danger" type="submit">Search</button>
+    </form>
+
+    <div>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Email adress</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Password</th>
+                <th>Operation</th>
+            </tr>
+            </thead>
+
+            <tbody class="table-light">
+            <th:block th:each="user : ${usersList}">
+                <tr>
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.firstName}"></td>
+                    <td th:text="${user.lastName}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.password}"></td>
+
+                    <td>
+                        <a class="h4 mr-3" th:href="@{'/users/edit/' + ${user.id}}">Edit</a>
+                        <a class="h4 mr-3" th:href="@{'/users/delete/' + ${user.id}}">Delete</a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

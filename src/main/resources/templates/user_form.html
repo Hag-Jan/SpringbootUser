@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <div class="h2 text-center">Add New User</div>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css}">
+
+</head>
+<body>
+<div class="h2 text-center">Add New User</div>
+
+<form th:action="@{/users/save}" method="post" style="max-width: 500px; margin: 0 auto" th:object="${user}">
+
+    <div class="border border-secondary p-4 rounded">
+
+        <div class="form-group row">
+            <label class="col-sm-3">Email</label>
+            <div class="col-sm-8 mb-3">
+                <input type="email" required th:field="*{email}" class="form-control"/>
+            </div>
+
+            <label class="col-sm-3">First Name</label>
+            <div class="col-sm-8 mb-3">
+                <input type="text" class="form-control" required th:field="*{firstName}"/>
+            </div>
+
+
+            <label class="col-sm-3">Last Name</label>
+            <div class="col-sm-8 mb-3">
+                <input type="text" class="form-control" required th:field="*{lastName}"/>
+            </div>
+
+            <!-- * lägga till saker eller komma fälten. $ object. @ anroppa metoden-->
+            <label class="col-sm-3">Password</label>
+            <div class="col-sm-8 mb-3">
+                <input type="password" class="form-control" required th:field="*{password}"/>
+            </div>
+
+            <div>
+                <label class="col-sm-3"></label>
+                <button class="btn btn-primary mb-1" type="submit">Save</button>
+            </div>
+        </div>
+    </div>
+    <a class="h4" th:href="@{/users}">Cancel</a>
+</form>
+
+</body>
+</html>
